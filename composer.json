@@ -1,0 +1,11 @@
+{
+    "require": {
+        "twig/twig": "^3.0",
+        "twbs/bootstrap": "^4.5",
+        "components/jquery": "^3.5",
+        "datatables/datatables": "^1.10",
+        "components/jqueryui": "^1.12",
+        "robinherbots/jquery.inputmask": "^5.0",
+        "bpampuch/pdfmake": "^0.1.70"
+    }
+}

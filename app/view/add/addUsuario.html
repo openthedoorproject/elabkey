@@ -1,0 +1,36 @@
+{% extends "/template/add.html" %}
+{% from "/template/add.html" import submit, input %}
+
+{% set entidade = "usuario" %}
+
+    {% block form %}
+        <p>Matricula: {{ input("text", "matriculaUsuario", " ", "required")}}</p>
+        <p>Nome: {{ input("text", "nomeUsuario", " ", "required")}}</p>
+
+        <label for="categ">Categoria:</label>
+        <select name="categoriaUsuario" id="categ" form="usuarioForm">
+            {% for categoria in categorias %}
+                <option value="{{categoria.Cod_categoria}}" >{{categoria.Descricao}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <label for="coord">Coordenação:</label>
+        <select name="coordenacaoUsuario" id="coord" form="usuarioForm">
+            {% for coordenacao in coordenacoes %}
+                <option value="{{coordenacao.Cod_coordenacao}}" >{{coordenacao.Nome}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <p>RFID: {{ input("text", "RFID", " ", "required")}}</p>
+        <p>Senha: {{ input("text", "senhaUsuario", " ", "required")}}</p>
+        <!-- <p>Confirme a senha: {{ input("text", "confirmacaoSenha", " ", "required")}}</p> -->
+        <p> Status:
+          <input type="radio" id="ativo" name="statusUsuario" value="1" required checked    >
+          <label for="ativo">Ativo</label>
+          <input type="radio" id="inativo" name="statusUsuario" value="0" required>
+          <label for="inativo">Inativo</label><br>
+        </p>
+
+        {{ submit("Adicionar") }}
+    {% endblock %}

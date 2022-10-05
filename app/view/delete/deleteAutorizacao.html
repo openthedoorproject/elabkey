@@ -1,0 +1,32 @@
+{% extends "/template/delete.html" %}
+{% from "/template/delete.html" import submit, input %}
+
+{% set entidade = "autorizacao" %}
+{% set primaryk = Cod_autorizacao %}
+
+    {% block form %}
+
+        {% set user = callstatic('Usuario', 'selecionaPorId', Usuario_matricula) %}
+        {% set req = callstatic('Requisitante', 'selecionaPorId', Cod_requisitante) %}
+
+        <p>Usuário: {{ input("text", "usuario", user.Nome, "disabled") }}</p>
+        <p>Requisitante: {{ input("text", "requisitante", req.Nome, "disabled") }}</p>
+
+        <p>Laboratório: <input type="text" size=13 name="laboratorio" value={{Laboratorio}} disabled > </p>
+
+        <p>Data de validade: <input type="text" name="data" value={{Data}} disabled> </p>
+        <p>Hora de validade: <input type="text" name="hora" value={{Hora_final}} disabled> </p>
+
+        <p>Observações: </p>
+        <textarea rows="3" cols="50" disabled>{{Obs}}</textarea>
+        <br>
+
+        <p>Cartão RFID: </p>
+        <input type="text" name="rfid" value="{{Rfid}}" disabled>
+
+        <br>
+        <br>
+
+        {{ submit("Apagar") }}
+
+    {% endblock %}

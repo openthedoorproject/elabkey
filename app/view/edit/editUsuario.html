@@ -1,0 +1,52 @@
+{% extends "/template/edit.html" %}
+{% from "/template/edit.html" import submit, input %}
+
+{% set  entidade = "usuario" %}
+
+    {% block form %}
+        <p>Matricula: {{ input("text", "matriculaUsuario", matricula, "disabled")}}</p>
+        <p>Nome: {{ input("text", "nomeUsuario", Nome, required)}}</p>
+
+        {% set categ = callstatic('Categoria', 'selecionaPorId', Categoria_cod_categoria) %}
+        {% set coord = callstatic('Coordenacao', 'selecionaPorId', Coordenacao_cod_coordenacao) %}
+
+        <label for="categ">Categoria:</label>
+        <select name="categoriaUsuario" id="categ" form="usuarioForm">
+            <option value="{{Categoria_cod_categoria}}"selected="selected"> {{categ.Descricao}} </option>
+            {% for categoria in categorias %}
+                <option value="{{categoria.Cod_categoria}}">{{categoria.Descricao}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <label for="coord">Coordenação:</label>
+        <select name="coordenacaoUsuario" id="coord" form="usuarioForm">
+            <option value="{{Coordenacao_cod_coordenacao}}" selected="selected"> {{coord.Nome}} </option>
+            {% for coordenacao in coordenacoes %}
+                <option value="{{coordenacao.Cod_coordenacao}}">{{coordenacao.Nome}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <p>RFID: {{ input("text", "RFID", Rfid, "required")}}</p>
+        <p>Senha: {{ input("text", "senhaUsuario", Senha, "required")}}</p>
+        <!-- <p>Confirme a senha: {{ input("text", "confirmacaoSenha", " ", "required")}}</p> -->
+        <p> Status:
+          <input type="radio" id="ativo" name="statusUsuario" value="1" required
+          {% if Status_usuario == 1 %}
+            checked
+          {% endif %}
+          >
+          <label for="ativo">Ativo</label>
+
+          <input type="radio" id="inativo" name="statusUsuario" value="0" required
+          {% if Status_usuario == 0 %}
+            checked
+          {% endif %}
+          >
+          <label for="inativo">Inativo</label><br>
+        </p>
+
+        <input type="hidden" name="id" value="{{matricula}}">
+
+        {{ submit("Alterar") }}
+    {% endblock %}

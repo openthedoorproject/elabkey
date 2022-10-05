@@ -1,0 +1,24 @@
+{% extends "/template/base.html" %}
+{% from "/template/base.html" import th, icon%}
+
+    {% set entidade = "coordenacao" %}
+
+    {% block theader %}
+        {{ th("100px", "ID") }}
+        {{ th("100px", "Sigla") }}
+        {{ th("350px", "Nome") }}
+        {{ th("28px", "Alterar") }}
+        {{ th("28px", "Apagar") }}
+    {% endblock %}
+
+    {% block tbody %}
+        {% for coordenacao in coordenacoes %}
+                <tr role="row">
+                    <td>{{coordenacao.Cod_coordenacao}}</td>
+                    <td>{{coordenacao.Sigla}}</td>
+                    <td>{{coordenacao.Nome}}</td>
+                    <td class="text-center"><a href="?pagina=coordenacao&action=edit&id={{coordenacao.Cod_coordenacao}}">{{ icon("pencil.svg") }}</a></td>
+                    <td class="text-center"><a href="?pagina=coordenacao&action=predelete&id={{coordenacao.Cod_coordenacao}}">{{ icon("bin.svg") }}</a></td>
+                </tr>
+            {% endfor %}
+        {% endblock %}

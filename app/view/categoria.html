@@ -1,0 +1,22 @@
+{% extends "/template/base.html" %}
+{% from "/template/base.html" import th, icon %}
+
+    {% set entidade = "categoria" %}
+
+    {% block theader %}
+        {{ th("100px", "ID") }}
+        {{ th("350px", "Categoria") }}
+        {{ th("28px", "Alterar") }}
+        {{ th("28px", "Apagar") }}
+    {% endblock %}
+
+    {% block tbody %}
+        {% for categoria in categorias %}
+            <tr role="row">
+                <td>{{categoria.Cod_categoria}}</td>
+                <td>{{categoria.Descricao}}</td>
+                <td class="text-center"><a href="?pagina=categoria&action=edit&id={{categoria.Cod_categoria}}">{{ icon("pencil.svg") }}</a></td>
+                <td class="text-center"><a href="?pagina=categoria&action=predelete&id={{categoria.Cod_categoria}}">{{ icon("bin.svg") }}</a></td>
+            </tr>
+            {% endfor %}
+    {% endblock %}

@@ -1,0 +1,39 @@
+<div>
+    <br>
+    {% if entidade is defined %}
+        <h1><b>{{entidade}}</b></h1>
+        <br>
+        <a class="btn btn-primary" href="?pagina={{entidade}}&action=create">Adicionar {{entidade}}</a>
+        <br>
+        <br>
+    {% endif %}
+    {% block before %}
+    {% endblock %}
+
+        <table id="tabela" class="dataTable nowrap table table-striped table-bordered" style="width: 100%;" role="grid">
+        <thead>
+            <tr role="row">
+                {% block theader %}
+
+                    {% macro th(width="105px", content="defaultmacrocontent") %}
+                        <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" style="width: {{width}};">{{content}}</th>
+                    {% endmacro %}
+
+                    <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" style="width: 105px;">this</th>
+                    <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 170px;" >is</th>
+                    <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 170px;">the<th>
+                    <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 170px;">basehtml</th>
+                {% endblock %}
+            </tr>
+        </thead>
+        <tbody>
+            {% block tbody %}
+                <p>you are loading the basehtml, please use a tbody block</p>
+            {% endblock %}
+
+            {% macro icon(src="pencil.svg", width="20", height="20") %}
+                <img src="lib\img\{{src}}" width="{{width}}" height="{{height}}">
+            {% endmacro %}
+        </tbody>
+    </table>
+</div>
