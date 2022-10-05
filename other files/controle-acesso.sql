@@ -125,8 +125,8 @@ INDEX Registro_Acesso_FKIndex2(Autorizacao_cod_autorizacao),
 -- Admin account 2
 -- USERNAME: 996103810
 -- PASSWORD: 250503
-INSERT INTO `coordenacao` (`Cod_coordenacao`, `Nome`, `Sigla`) VALUES ('1', 'Coordenadoria de informática', 'COINF');
-INSERT INTO `turma` (`Cod_turma`, `Coordenacao_cod_coordenacao`, `Nome`, `Sigla`) VALUES (1, 1, '3° ano integrado em informática', '3IINF');
-INSERT INTO `categoria` (`Cod_categoria`, `Descricao`) VALUES ('1', 'Coordenação');
-INSERT INTO `usuario` (`matricula`, `Categoria_cod_categoria`, `Coordenacao_cod_coordenacao`, `Nome`, `Rfid`, `Senha`, `Status_usuario`) VALUES ('321654987', '1', '1', 'Pedro Silva dos Santos', '0', '465132', '1');
-INSERT INTO `usuario` (`matricula`, `Categoria_cod_categoria`, `Coordenacao_cod_coordenacao`, `Nome`, `Rfid`, `Senha`, `Status_usuario`) VALUES ('996103810', '1', '1', 'Luiz Fernando Batista Morato', '0', '250503', '1');
+INSERT INTO `Coordenacao` (`Cod_coordenacao`, `Nome`, `Sigla`) VALUES ('1', 'Coordenadoria de informática', 'COINF');
+INSERT INTO `Turma` (`Cod_turma`, `Coordenacao_cod_coordenacao`, `Nome`, `Sigla`) VALUES (1, 1, '3° ano integrado em informática', '3IINF');
+INSERT INTO `Categoria` (`Cod_categoria`, `Descricao`) VALUES ('1', 'Coordenação');
+INSERT INTO `Usuario` (`matricula`, `Categoria_cod_categoria`, `Coordenacao_cod_coordenacao`, `Nome`, `Rfid`, `Senha`, `Status_usuario`) VALUES ('321654987', '1', '1', 'Pedro Silva dos Santos', '0', '465132', '1');
+INSERT INTO `Usuario` (`matricula`, `Categoria_cod_categoria`, `Coordenacao_cod_coordenacao`, `Nome`, `Rfid`, `Senha`, `Status_usuario`) VALUES ('996103810', '1', '1', 'Luiz Fernando Batista Morato', '0', '250503', '1');

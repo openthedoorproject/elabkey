@@ -4,7 +4,7 @@
         public static function selecionaTodos(){
             $con = Connection::getConn();
 
-            $sql = "SELECT * FROM coordenacao ORDER BY Cod_coordenacao DESC";
+            $sql = "SELECT * FROM Coordenacao ORDER BY Cod_coordenacao DESC";
             $sql = $con->prepare($sql);
             $sql->execute();
 
@@ -20,7 +20,7 @@
 
         public static function selecionaPorId($coordenacaoID){
             $con = Connection::getConn();
-            $sql = "SELECT * FROM coordenacao WHERE Cod_coordenacao = :id";
+            $sql = "SELECT * FROM Coordenacao WHERE Cod_coordenacao = :id";
             $sql = $con->prepare($sql);
             $sql->bindValue(':id', $coordenacaoID, PDO::PARAM_INT);
             $sql-> execute();
@@ -43,7 +43,7 @@
 
             $con = Connection::getConn();
 
-            $sql = 'INSERT INTO coordenacao (Nome, Sigla) VALUES (:nom, :sigla)';
+            $sql = 'INSERT INTO Coordenacao (Nome, Sigla) VALUES (:nom, :sigla)';
             $sql = $con->prepare($sql);
             $sql->bindValue(':nom', $dadosReq['nomeCoordenacao']);
             $sql->bindValue(':sigla', $dadosReq['siglaCoordenacao']);
@@ -68,7 +68,7 @@
 
             $con = Connection::getConn();
 
-            $sql = 'UPDATE coordenacao SET Nome = :nome, Sigla = :sigla WHERE Cod_coordenacao = :id';
+            $sql = 'UPDATE Coordenacao SET Nome = :nome, Sigla = :sigla WHERE Cod_coordenacao = :id';
             $sql = $con->prepare($sql);
             $sql->bindValue(':nome', $dadosPost['nomeCoordenacao']);
             $sql->bindValue(':sigla', $dadosPost['siglaCoordenacao']);

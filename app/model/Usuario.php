@@ -4,7 +4,7 @@
         public static function selecionaTodos($status = 1){
             $con = Connection::getConn();
 
-            $sql = "SELECT * FROM usuario WHERE Status_usuario = $status ORDER BY matricula DESC";
+            $sql = "SELECT * FROM Usuario WHERE Status_usuario = $status ORDER BY matricula DESC";
             $sql = $con->prepare($sql);
             $sql->execute();
 
@@ -20,7 +20,7 @@
 
         public static function selecionaPorId($usuarioID){
             $con = Connection::getConn();
-            $sql = "SELECT * FROM usuario WHERE matricula = :id";
+            $sql = "SELECT * FROM Usuario WHERE matricula = :id";
             $sql = $con->prepare($sql);
             $sql->bindValue(':id', $usuarioID, PDO::PARAM_INT);
             $sql-> execute();
@@ -43,7 +43,7 @@
 
             $con = Connection::getConn();
 
-            $sql = 'INSERT INTO usuario (Nome, matricula, Categoria_cod_categoria, Coordenacao_cod_coordenacao, Rfid, Status_usuario, Senha)
+            $sql = 'INSERT INTO Usuario (Nome, matricula, Categoria_cod_categoria, Coordenacao_cod_coordenacao, Rfid, Status_usuario, Senha)
               VALUES (:nome, :matr, :categ, :coord, :rfid, :status, :senha)';
             $sql = $con->prepare($sql);
             $sql->bindValue(':nome', $dadosReq['nomeUsuario']);
@@ -73,7 +73,7 @@
 
             $con = Connection::getConn();
 
-            $sql = 'UPDATE usuario SET Nome = :nome, Categoria_cod_categoria = :catid, Coordenacao_cod_coordenacao = :corid,
+            $sql = 'UPDATE Usuario SET Nome = :nome, Categoria_cod_categoria = :catid, Coordenacao_cod_coordenacao = :corid,
               Rfid = :rfid, Senha = :senha, Status_usuario = :status WHERE matricula = :id';
             $sql = $con->prepare($sql);
             $sql->bindValue(':nome', $dadosReq['nomeUsuario']);
@@ -98,7 +98,7 @@
 
             $con = Connection::getConn();
 
-            $sql = 'DELETE FROM usuario WHERE matricula = :id';
+            $sql = 'DELETE FROM Usuario WHERE matricula = :id';
             $sql = $con->prepare($sql);
             $sql->bindValue(':id', $usuarioID);
             $res = $sql->execute();

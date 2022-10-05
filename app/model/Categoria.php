@@ -4,7 +4,7 @@
         public static function selecionaTodos(){
             $con = Connection::getConn();
 
-            $sql = "SELECT * FROM categoria ORDER BY Cod_categoria DESC";
+            $sql = "SELECT * FROM Categoria ORDER BY Cod_categoria DESC";
             $sql = $con->prepare($sql);
             $sql->execute();
 
@@ -20,7 +20,7 @@
 
         public static function selecionaPorId($categoriaID){
             $con = Connection::getConn();
-            $sql = "SELECT * FROM categoria WHERE Cod_categoria = :id";
+            $sql = "SELECT * FROM Categoria WHERE Cod_categoria = :id";
             $sql = $con->prepare($sql);
             $sql->bindValue(':id', $categoriaID, PDO::PARAM_INT);
             $sql-> execute();
@@ -43,7 +43,7 @@
 
             $con = Connection::getConn();
 
-            $sql = 'INSERT INTO categoria (Descricao) VALUES (:desc)';
+            $sql = 'INSERT INTO Categoria (Descricao) VALUES (:desc)';
             $sql = $con->prepare($sql);
             $sql->bindValue(':desc', $dadosReq['descCategoria']);
             $res = $sql->execute();
@@ -67,7 +67,7 @@
 
             $con = Connection::getConn();
 
-            $sql = 'UPDATE categoria SET Descricao = :desc WHERE Cod_categoria = :id';
+            $sql = 'UPDATE Categoria SET Descricao = :desc WHERE Cod_categoria = :id';
             $sql = $con->prepare($sql);
             $sql->bindValue(':desc', $dadosPost['descCategoria']);
             $sql->bindValue(':id', $dadosPost['id']);

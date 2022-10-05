@@ -35,8 +35,8 @@
             $con = Connection::getConn();
 
             $sql = "INSERT INTO Autorizacao (Requisitante_cod_requisitante, Usuario_matricula, Data_validade,
-                                            Hora_inicial, Hora_final, Rfid, Laboratorio, Obs)
-                                VALUES (:req, :user, :data, :hora, :final, :rfid, :lab, :obs)";
+                                            Hora_inicial, Hora_final, Senha, Laboratorio, Obs)
+                                VALUES (:req, :user, :data, :hora, :final, :senha, :lab, :obs)";
             $sql = $con->prepare($sql);
             $sql->bindValue(':req', $dadosReq['requisitante'], PDO::PARAM_INT);
             $sql->bindValue(':user', $dadosReq['usuario'], PDO::PARAM_INT);
@@ -46,7 +46,7 @@
             $sql->bindValue(':hora', date_format($hora,"H:i"));
                 date_add($hora, date_interval_create_from_date_string('1800 seconds')); // + 30 min
             $sql->bindValue(':final', date_format($hora,"H:i"));
-            $sql->bindValue(':rfid', $dadosReq['rfid']);
+            $sql->bindValue(':senha', $dadosReq['senha']);
             $sql->bindValue(':lab', $dadosReq['laboratorio'], PDO::PARAM_INT);
             $sql->bindValue(':obs', $dadosReq['obs']);
             $res = $sql->execute();
@@ -65,7 +65,7 @@
             $con = Connection::getConn();
 
             $sql = "UPDATE Autorizacao SET Requisitante_cod_requisitante = :req, Usuario_matricula = :user, Data_validade = :data,
-                                            Hora_inicial = :hora_inicial, Hora_final = :hora_final, Rfid = :rfid, Laboratorio = :lab, Obs = :obs
+                                            Hora_inicial = :hora_inicial, Hora_final = :hora_final, Senha = :senha, Laboratorio = :lab, Obs = :obs
                                             WHERE Cod_autorizacao = :cod_aut";
             $sql = $con->prepare($sql);
             $sql->bindValue(':cod_aut', $dadosReq['Cod_autorizacao'], PDO::PARAM_INT);
@@ -77,7 +77,7 @@
             $sql->bindValue(':hora_inicial', date_format($hora,"H:i"));
                 date_add($hora, date_interval_create_from_date_string('1800 seconds')); // + 30 min
             $sql->bindValue(':hora_final', date_format($hora,"H:i"));
-            $sql->bindValue(':rfid', $dadosReq['rfid']);
+            $sql->bindValue(':senha', $dadosReq['senha']);
             $sql->bindValue(':lab', $dadosReq['laboratorio'], PDO::PARAM_INT);
             $sql->bindValue(':obs', $dadosReq['obs']);
             $res = $sql->execute();
@@ -116,7 +116,7 @@
             // para cada autorização:
             // se não foi efetivada e horário seja inválido:
                 // marcar como efetivada
-            $sql = " UPDATE autorizacao SET Efetivada =
+            $sql = " UPDATE Autorizacao SET Efetivada =
                                                 autorizacao.Efetivada OR NOW() > concat(Data_validade, ' ', Hora_final); -- no passado
                       ";
             $sql = $con->prepare($sql);
@@ -142,8 +142,7 @@
                                                                 AND NOW() > concat(Data_validade, ' ', Hora_inicial) -- válido
                                                             );
                       ";*/
-            $sql = "SELECT DISTINCT Rfid FROM autorizacao WHERE Efetivada = 1
-                                                        AND Rfid <> (SELECT DISTINCT Rfid FROM autorizacao WHERE
+            $sql = "SELECT DISTINCT Rfid FROM autorizacao WHERE
                                                                 NOW() < concat(Data_validade, ' ', Hora_final)
                                                                 AND NOW() > concat(Data_validade, ' ', Hora_inicial))-- válido";
             $sql = $con->prepare($sql);

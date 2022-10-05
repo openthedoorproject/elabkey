@@ -6,7 +6,7 @@
         public static function getConn(){
             if(self::$conn == null){
                 try{
-                    self::$conn = new PDO('mysql:host=127.0.0.1;dbname=387930;', '387930', "tccIfsElabkey"); // mudar de acordo com a configuração do BD
+                    self::$conn = new PDO('mysql:host=127.0.0.1:33061;dbname=acesso;', 'root', "baldevazio7"); // mudar de acordo com a configuração do BD
                 } catch(Exception $e){
                     echo $e->getMessage();
                     exit();

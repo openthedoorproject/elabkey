@@ -2,7 +2,7 @@
 
     class AutorizacaoController{
         public function index(){
-            Autorizacao::checarEfetivadas();
+            //Autorizacao::checarEfetivadas();
 
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
@@ -55,12 +55,12 @@
 
             $objUsuario = Usuario::selecionaTodos();
             $objRequisitante = Requisitante::selecionaTodos();
-            $arrRFID = Autorizacao::rfidNotUsed();
+            $arrRFID = [];//Autorizacao::rfidNotUsed();
 
             $parametros = array();
             $parametros['usuarios'] = $objUsuario;
             $parametros['requisitantes'] = $objRequisitante;
-            $parametros['arr_rfid'] = $arrRFID;
+            //$parametros['arr_rfid'] = $arrRFID;
 
             $conteudo = $template->render($parametros);
             echo $conteudo;
@@ -121,7 +121,7 @@
             $parametros['Obs'] = $autorizacao->Obs;
             $parametros['Data_validade'] = date_create($dataValidade)->format('d-m-Y');
             $parametros['Hora_inicial'] = $Hora_inicial;
-            $parametros['Rfid'] = $autorizacao->Rfid;
+            $parametros['Senha'] = $autorizacao->Senha;
             $parametros['usuarios'] = $objUsuario;
             $parametros['requisitantes'] = $objRequisitante;
 
@@ -176,7 +176,7 @@
             $parametros['Obs'] = $autorizacao->Obs;
             $parametros['Data'] = date_create($dataValidade)->format('d-m-Y');
             $parametros['Hora_final'] = $Hora_inicial;
-            $parametros['Rfid'] = $autorizacao->Rfid;
+            $parametros['Senha'] = $autorizacao->Senha;
             $parametros['usuarios'] = $objUsuario;
             $parametros['requisitantes'] = $objRequisitante;
 

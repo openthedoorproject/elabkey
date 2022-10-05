@@ -4,7 +4,7 @@
         public static function selecionaTodos(){
             $con = Connection::getConn();
 
-            $sql = "SELECT * FROM requisitante ORDER BY Cod_requisitante DESC";
+            $sql = "SELECT * FROM Requisitante ORDER BY Cod_requisitante DESC";
             $sql = $con->prepare($sql);
             $sql->execute();
 
@@ -20,7 +20,7 @@
 
         public static function selecionaPorId($requisitanteID){
             $con = Connection::getConn();
-            $sql = "SELECT * FROM requisitante WHERE Cod_requisitante = :id";
+            $sql = "SELECT * FROM Requisitante WHERE Cod_requisitante = :id";
             $sql = $con->prepare($sql);
             $sql->bindValue(':id', $requisitanteID, PDO::PARAM_INT);
             $sql-> execute();
@@ -43,7 +43,7 @@
 
             $con = Connection::getConn();
 
-            $sql = 'INSERT INTO requisitante (Nome, Coordenacao_cod_coordenacao, Turma_Cod_turma) VALUES (:nome, :coord, :turma)';
+            $sql = 'INSERT INTO Requisitante (Nome, Coordenacao_cod_coordenacao, Turma_Cod_turma) VALUES (:nome, :coord, :turma)';
             $sql = $con->prepare($sql);
             $sql->bindValue(':nome', $dadosReq['nomeRequisitante']);
             $sql->bindValue(':turma', $dadosReq['turmaRequisitante']);

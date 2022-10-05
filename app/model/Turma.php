@@ -4,7 +4,7 @@
         public static function selecionaTodos(){
             $con = Connection::getConn();
 
-            $sql = "SELECT * FROM turma ORDER BY Cod_turma DESC";
+            $sql = "SELECT * FROM Turma ORDER BY Cod_turma DESC";
             $sql = $con->prepare($sql);
             $sql->execute();
 
@@ -20,7 +20,7 @@
 
         public static function selecionaPorId($turmaID){
             $con = Connection::getConn();
-            $sql = "SELECT * FROM turma WHERE Cod_turma = :id";
+            $sql = "SELECT * FROM Turma WHERE Cod_turma = :id";
             $sql = $con->prepare($sql);
             $sql->bindValue(':id', $turmaID, PDO::PARAM_INT);
             $sql-> execute();
@@ -44,7 +44,7 @@
 
             $con = Connection::getConn();
 
-            $sql = 'INSERT INTO turma (Nome, Sigla, Coordenacao_Cod_coordenacao) VALUES (:nom, :sigla, :coord)';
+            $sql = 'INSERT INTO Turma (Nome, Sigla, Coordenacao_Cod_coordenacao) VALUES (:nom, :sigla, :coord)';
             $sql = $con->prepare($sql);
             $sql->bindValue(':nom', $dadosReq['nomeTurma']);
             $sql->bindValue(':sigla', $dadosReq['siglaTurma']);
@@ -72,7 +72,7 @@
 
             $con = Connection::getConn();
 
-            $sql = 'UPDATE turma SET Nome = :nome, Sigla = :sigla WHERE Cod_turma = :id';
+            $sql = 'UPDATE Turma SET Nome = :nome, Sigla = :sigla WHERE Cod_turma = :id';
             $sql = $con->prepare($sql);
             $sql->bindValue(':nome', $dadosPost['nomeTurma']);
             $sql->bindValue(':sigla', $dadosPost['siglaTurma']);
