@@ -6,6 +6,7 @@
         "datatables/datatables": "^1.10",
         "components/jqueryui": "^1.12",
         "robinherbots/jquery.inputmask": "^5.0",
-        "bpampuch/pdfmake": "^0.1.70"
+        "bpampuch/pdfmake": "^0.1.70",
+        "vlucas/phpdotenv": "^5.4"
     }
 }
