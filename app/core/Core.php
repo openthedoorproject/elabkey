@@ -39,6 +39,11 @@
                 $id = null;
             }
 
-            call_user_func_array( array(new $controller, $action), array('id' => $id) );
+            $parameters = [];
+
+            if($id)
+                $parameters['id'] = $id;
+
+            call_user_func_array( array(new $controller, $action), $parameters);
         }
     }

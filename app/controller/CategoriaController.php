@@ -43,12 +43,12 @@
 
         }
 
-        public function edit($categoriaID){
+        public function edit($id){
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
             $template = $twig->load('edit/editCategoria.html');
 
-            $categoria = Categoria::selecionaPorId($categoriaID);
+            $categoria = Categoria::selecionaPorId($id);
 
             $parametros = array();
             $parametros['Cod_categoria'] = $categoria->Cod_categoria;
@@ -71,12 +71,12 @@
             }
         }
 
-        public function predelete($categoriaID){
+        public function predelete($id){
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
             $template = $twig->load('delete/deleteCategoria.html');
 
-            $categoria = Categoria::selecionaPorId($categoriaID);
+            $categoria = Categoria::selecionaPorId($id);
 
             $parametros = array();
             $parametros['Cod_categoria'] = $categoria->Cod_categoria;
@@ -87,9 +87,9 @@
 
         }
 
-        public function delete($codCategoria){
+        public function delete($id){
             try{
-                Categoria::delete($codCategoria);
+                Categoria::delete($id);
 
                 if(!isset($_SESSION)) session_start();;
                 $_SESSION["apagado"] = true;

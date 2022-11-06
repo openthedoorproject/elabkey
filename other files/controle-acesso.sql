@@ -100,7 +100,7 @@ INDEX Autorizacao_FKIndex2(Requisitante_cod_requisitante),
 
 CREATE TABLE Registro_Acesso (
   Cod_registro INTEGER UNSIGNED  NOT NULL   AUTO_INCREMENT,
-  Autorizacao_cod_autorizacao INTEGER UNSIGNED  NOT NULL  ,
+  Autorizacao_cod_autorizacao INTEGER UNSIGNED NULL  ,
   Usuario_matricula INTEGER UNSIGNED  NULL  ,
   Data_acesso DATE  NOT NULL  ,
   Hora_acesso TIME  NOT NULL  ,

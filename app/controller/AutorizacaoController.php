@@ -84,7 +84,7 @@
 
         }
 
-        public function edit($autorizacaoID){
+        public function edit($id){
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
 
@@ -105,7 +105,7 @@
 
             $parametros = array();
 
-            $autorizacao = Autorizacao::selecionaPorId($autorizacaoID);
+            $autorizacao = Autorizacao::selecionaPorId($id);
             $objUsuario = Usuario::selecionaTodos();
             $objRequisitante = Requisitante::selecionaTodos();
 
@@ -141,7 +141,7 @@
             }
         }
 
-        public function predelete($autorizacaoID){
+        public function predelete($id){
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
 
@@ -159,7 +159,7 @@
 
             $template = $twig->load('delete/deleteAutorizacao.html');
 
-            $autorizacao = Autorizacao::selecionaPorId($autorizacaoID);
+            $autorizacao = Autorizacao::selecionaPorId($id);
             $objUsuario = Usuario::selecionaTodos();
             $objRequisitante = Requisitante::selecionaTodos();
 
@@ -184,9 +184,9 @@
             echo $conteudo;
         }
 
-        public function delete($codAutorizacao){
+        public function delete($id){
             try{
-                Autorizacao::delete($codAutorizacao);
+                Autorizacao::delete($id);
 
                 if(!isset($_SESSION)) session_start();;
                 $_SESSION["apagado"] = true;
@@ -197,10 +197,10 @@
             }
         }
 
-        public function observacao($codAutorizacao){
+        public function observacao($id){
             try {
                 if(!isset($_SESSION)) session_start();;
-                $_SESSION["obs"] = $codAutorizacao;
+                $_SESSION["obs"] = $id;
                 header('Location:?pagina=autorizacao');
             } catch(Exception $e){
                 echo '<script>alert("'.$e->getMessage().'");</script>';

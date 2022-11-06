@@ -46,33 +46,7 @@
             Util::notifyToasts();
         }
 
-        public function create(){
-            $loader = new \Twig\Loader\FilesystemLoader('app/view');
-            $twig = new \Twig\Environment($loader);
-            $template = $twig->load('add/addRegistro.html');
-
-            $objCategoria = Usuario::selecionaTodos();
-            $objCoordenacao = Autorizacao::selecionaTodos();
-
-            $parametros = array();
-            $parametros['usuarios'] = $objUsuario;
-            $parametros['autorizacoes'] = $objAutorizacao;
-
-            $conteudo = $template->render($parametros);
-            echo $conteudo;
-        }
-
-        public function insert(){
-            try{
-                Registro::insert($_GET);
-                //header('Location:?pagina=registro');
-            } catch(Exception $e){
-
-            }
-
-        }
-
-        public function edit($RegistroID){
+        public function edit($id){
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
 
@@ -89,7 +63,7 @@
             }));
             $template = $twig->load('edit/editRegistro.html');
 
-            $Registro = Registro::selecionaPorId($RegistroID);
+            $Registro = Registro::selecionaPorId($id);
             $objCategoria = Categoria::selecionaTodos();
             $objCoordenacao = Coordenacao::selecionaTodos();
 
@@ -119,7 +93,7 @@
             }
         }
 
-        public function predelete($RegistroID){
+        public function predelete($id){
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
 
@@ -136,7 +110,7 @@
             }));
             $template = $twig->load('/delete/deleteRegistro.html');
 
-            $Registro = Registro::selecionaPorId($RegistroID);
+            $Registro = Registro::selecionaPorId($id);
 
             $parametros = array();
             $parametros['cod_registro'] = $Registro->cod_registro;

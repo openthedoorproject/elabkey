@@ -65,7 +65,7 @@
 
         }
 
-        public function edit($usuarioID){
+        public function edit($id){
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
 
@@ -83,7 +83,7 @@
 
             $template = $twig->load('edit/editUsuario.html');
 
-            $usuario = Usuario::selecionaPorId($usuarioID);
+            $usuario = Usuario::selecionaPorId($id);
             $objCategoria = Categoria::selecionaTodos();
             $objCoordenacao = Coordenacao::selecionaTodos();
 
@@ -116,7 +116,7 @@
             }
         }
 
-        public function predelete($usuarioID){
+        public function predelete($id){
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
 
@@ -133,7 +133,7 @@
             }));
             $template = $twig->load('/delete/deleteUsuario.html');
 
-            $usuario = Usuario::selecionaPorId($usuarioID);
+            $usuario = Usuario::selecionaPorId($id);
 
             $parametros = array();
             $parametros['matricula'] = $usuario->matricula;
@@ -146,9 +146,9 @@
 
         }
 
-        public function delete($codUsuario){
+        public function delete($id){
             try{
-                Usuario::delete($codUsuario);
+                Usuario::delete($id);
 
                 if(!isset($_SESSION)) session_start();;
                 $_SESSION["apagado"] = true;

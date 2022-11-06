@@ -62,7 +62,7 @@
 
         }
 
-        public function edit($requisitanteID){
+        public function edit($id){
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
 
@@ -81,13 +81,13 @@
             $template = $twig->load('edit/editRequisitante.html');
 
             /*// checar se já foi usado
-            if($acessos = Requisitante::selecionaAcessos($requisitanteID)){
+            if($acessos = Requisitante::selecionaAcessos($id)){
                 if(!isset($_SESSION)) session_start();;
                 $_SESSION['unauthorized'] = true;
                 header('Location:?pagina=requisitante');
             }*/
 
-            $requisitante = Requisitante::selecionaPorId($requisitanteID);
+            $requisitante = Requisitante::selecionaPorId($id);
             $objTurma = Turma::selecionaTodos();
             $objCoordenacao = Coordenacao::selecionaTodos();
 
@@ -115,7 +115,7 @@
             }
         }
 
-        public function predelete($requisitanteID){
+        public function predelete($id){
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
 
@@ -133,10 +133,10 @@
 
             $template = $twig->load('delete/deleteRequisitante.html');
 
-            $requisitante = Requisitante::selecionaPorId($requisitanteID);
+            $requisitante = Requisitante::selecionaPorId($id);
 
             // checar se já foi usado
-            if($acessos = Requisitante::selecionaAcessos($requisitanteID)){
+            if($acessos = Requisitante::selecionaAcessos($id)){
                 if(!isset($_SESSION)) session_start();
                 $_SESSION['unauthorized'] = true;
                 header('Location:?pagina=requisitante');
@@ -152,9 +152,9 @@
             echo $conteudo;
         }
 
-        public function delete($codRequisitante){
+        public function delete($id){
             try{
-                Requisitante::delete($codRequisitante);
+                Requisitante::delete($id);
 
                 if(!isset($_SESSION)) session_start();;
                 $_SESSION["apagado"] = true;
@@ -165,9 +165,9 @@
             }
         }
 
-        public function verAcessos($requisitanteID){
+        public function verAcessos($id){
             try{
-                $acessos = Requisitante::selecionaAcessos($requisitanteID);
+                $acessos = Requisitante::selecionaAcessos($id);
 
                 if(!isset($_SESSION)) session_start();;
                 $_SESSION["verAcessos"] = $acessos;

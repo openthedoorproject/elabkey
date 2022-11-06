@@ -4,7 +4,7 @@
         public static function selecionaTodos(){
             $con = Connection::getConn();
 
-            $sql = "SELECT * FROM registro_acesso ORDER BY Cod_registro DESC";
+            $sql = "SELECT * FROM Registro_Acesso ORDER BY Cod_registro DESC";
             $sql = $con->prepare($sql);
             $sql->execute();
 
@@ -20,7 +20,7 @@
 
         public static function selecionaPorId($RegistroID){
             $con = Connection::getConn();
-            $sql = "SELECT * FROM registro_acesso WHERE Cod_registro = :id";
+            $sql = "SELECT * FROM Registro_Acesso WHERE Cod_registro = :id";
             $sql = $con->prepare($sql);
             $sql->bindValue(':id', $RegistroID, PDO::PARAM_INT);
             $sql->execute();
@@ -82,7 +82,7 @@
                 echo json_encode($data); // Embarcado recebe auth = 1 e abre a tranca
             }
 
-            $sql = " INSERT INTO registro_acesso (Data_acesso, Hora_acesso, Laboratorio, Usuario_matricula, Autorizacao_cod_autorizacao)
+            $sql = " INSERT INTO Registro_Acesso (Data_acesso, Hora_acesso, Laboratorio, Usuario_matricula, Autorizacao_cod_autorizacao)
                         VALUES (:data_esp, :tempo_esp, :lab, :matricula, :autorizacao) ";
             $sql = $con->prepare($sql);
             $sql->bindValue(':data_esp', Util::higienize($dadosGET["date"]));
@@ -133,7 +133,7 @@
 
             $con = Connection::getConn();
 
-            $sql = 'DELETE FROM registro_acesso WHERE Cod_registro = :id';
+            $sql = 'DELETE FROM Registro_Acesso WHERE Cod_registro = :id';
             $sql = $con->prepare($sql);
             $sql->bindValue(':id', $RegistroID);
             $res = $sql->execute();

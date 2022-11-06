@@ -45,12 +45,12 @@
 
         }
 
-        public function edit($coordenacaoID){
+        public function edit($id){
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
             $template = $twig->load('edit/editCoordenacao.html');
 
-            $coordenacao = Coordenacao::selecionaPorId($coordenacaoID);
+            $coordenacao = Coordenacao::selecionaPorId($id);
 
             $parametros = array();
             $parametros['Cod_coordenacao'] = $coordenacao->Cod_coordenacao;
@@ -74,12 +74,12 @@
             }
         }
 
-        public function predelete($coordenacaoID){
+        public function predelete($id){
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
             $template = $twig->load('delete/deleteCoordenacao.html');
 
-            $coordenacao = Coordenacao::selecionaPorId($coordenacaoID);
+            $coordenacao = Coordenacao::selecionaPorId($id);
 
             $parametros = array();
             $parametros['Cod_coordenacao'] = $coordenacao->Cod_coordenacao;
@@ -91,9 +91,9 @@
 
         }
 
-        public function delete($codCoordenacao){
+        public function delete($id){
             try{
-                Coordenacao::delete($codCoordenacao);
+                Coordenacao::delete($id);
 
                 if(!isset($_SESSION)) session_start();;
                 $_SESSION["apagado"] = true;

@@ -59,12 +59,12 @@
 
         }
 
-        public function edit($turmaID){
+        public function edit($id){
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
             $template = $twig->load('edit/editTurma.html');
 
-            $turma = Turma::selecionaPorId($turmaID);
+            $turma = Turma::selecionaPorId($id);
 
             $parametros = array();
             $parametros['Cod_turma'] = $turma->Cod_turma;
@@ -87,12 +87,12 @@
             }
         }
 
-        public function predelete($turmaID){
+        public function predelete($id){
             $loader = new \Twig\Loader\FilesystemLoader('app/view');
             $twig = new \Twig\Environment($loader);
             $template = $twig->load('delete/deleteTurma.html');
 
-            $turma = Turma::selecionaPorId($turmaID);
+            $turma = Turma::selecionaPorId($id);
 
             $parametros = array();
             $parametros['Cod_turma'] = $turma->Cod_turma;
@@ -103,9 +103,9 @@
             echo $conteudo;
         }
 
-        public function delete($codTurma){
+        public function delete($id){
             try{
-                Turma::delete($codTurma);
+                Turma::delete($id);
 
                 if(!isset($_SESSION)) session_start();;
                 $_SESSION["apagado"] = true;
